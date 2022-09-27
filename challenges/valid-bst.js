@@ -49,36 +49,13 @@ function BinaryTree(value) {
 }
 
 const validBST = tree => {
-
-  const valid = (tree) => {
-    console.log(tree)
-    if(tree === null) return null;
-    let max = valid(tree.left);
-    let min = valid(tree.right);
-
-    if (max === false || min === false) return false;
-    if (max === null) max = tree.value;
-    if (min === null) min = tree.value;
-
-    max = Math.max(tree.value, max);
-    min = Math.min(tree.value, min);
-    console.log(max, min)
-
-    if(tree.value >= max && tree.value <= min){
-      return tree.value;
-    } else {
-      return false;
-    }
+  const valid = (tree, min, max) => {
+    if(tree === null) return true;
+    if(tree.value < min || tree.value > max) return false;
+    return valid(tree.left, min, tree.value) && valid(tree.right, tree.value, max);
   }
-
-  return (valid(tree) === false) ? false : true;
+  return valid(tree, -Infinity, Infinity);
 }
-const tree = new BinaryTree(10);
-  tree.left = new BinaryTree(5);
-  tree.left.left = new BinaryTree(3);
-  tree.left.right = new BinaryTree(6);
-  tree.right = new BinaryTree(14);
-  tree.left.right.right = new BinaryTree(11);
 
 console.log(validBST(tree))
 module.exports = { BinaryTree, validBST };

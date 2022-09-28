@@ -45,7 +45,7 @@ describe('selection sort test', () => {
   });
 });
 
-xdescribe('insertion sort test', () => {
+describe('insertion sort test', () => {
   let arr, sorted;
   it('returns the same array in memory', () => {
     arr = [];

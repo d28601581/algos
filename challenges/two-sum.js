@@ -42,7 +42,7 @@ const threeSum = (arr, target) => {
   set.add(arr[0])
   for(let i = 1; i < arr.length; i++){
     let curr = target - arr[i];
-    for(let j = i+1; j < arr.length; j++){
+    for(let j = i + 1; j < arr.length; j++){
       if(set.has(curr - arr[j])) return true;
       else set.add(arr[i]);
     }
